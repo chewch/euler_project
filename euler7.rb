@@ -5,6 +5,4 @@ require_relative 'euler_requires'
 # we can see that the 6th prime is 13.
 
 # What is the 10 001st prime number?
-Prime.each(10001) do |x|
-  p x
-end
+p Prime.first(10001)
