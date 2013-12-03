@@ -11,11 +11,11 @@ require_relative 'euler_requires'
 a = 0
 b = 0
 c = 0;
-s = 1000;
+sum = 1000;
 found = false;
-for a in 1..(s / 3) do
-  for b in a..(s / 2) do
-    c = s - a - b
+for a in 1..(sum-1 / 3) do
+  for b in a..(sum / 2) do
+    c = sum - a - b
     if (a * a + b * b == c * c)
         found = true
         break
