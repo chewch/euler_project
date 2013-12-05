@@ -12,6 +12,8 @@ class Grid
 
     # the largest multiple
     @multi_max = 0
+
+
   end
 
   def create
@@ -26,6 +28,16 @@ class Grid
   def define_limits
     @xy_max = @number_array.length
     @step = @xy_max / 5
+    # calculation arguments:
+    # [0] Horizontal multiples
+    # [1] Vertical multiples
+    # [2] Diagonal "back slash"
+    # [3] Diagonal "forward slash"
+    @calc_args = [
+      {x0: 0, x1: @xy_max-@step, y0: 0, y1: @xy_max-1, off: @hz},
+      {x0: 0, x1: @xy_max-1, y0: 0, y1: @xy_max-@step, off: @vt},
+      {x0: 0, x1: @xy_max-@step, y0: 0, y1: @xy_max-@step, off: @db},
+      {x0: @step, x1: @xy_max-1, y0: 0, y1: @xy_max-@step, off: @df}]
   end
 
   def calc_multi_max
@@ -35,42 +47,20 @@ class Grid
     self.calc_diag_fwd
   end
 
-  def calc_horizontal
-    args = {x0: 0, x1: @xy_max-@step,
-            y0: 0, y1: @xy_max-1, off: @hz}
-    get_multi_max(args)
-  end
-
-  def calc_vertical
-    args = {x0: 0, x1: @xy_max-1,
-            y0: 0, y1: @xy_max-@step, off: @vt}
-    get_multi_max(args)
-  end
-
-  def calc_diag_back
-    args = {x0: 0, x1: @xy_max-@step,
-            y0: 0, y1: @xy_max-@step, off: @db}
-    get_multi_max(args)
-  end
-
-  def calc_diag_fwd
-    args = {x0: @step, x1: @xy_max-1,
-            y0: 0, y1: @xy_max-@step, off: @df}
-    get_multi_max(args)
-  end
-
-  def get_multi_max(args)
-    for x in args[:x0]..args[:x1] do
-      for y in args[:y0]..args[:y1] do
-        four_by = @number_array[x][y] *
-        @number_array[x+args[:off][0][0]][y+args[:off][0][1]] *
-        @number_array[x+args[:off][1][0]][y+args[:off][1][1]] *
-        @number_array[x+args[:off][2][0]][y+args[:off][2][1]]
-        @multi_max = four_by if four_by > @multi_max
+  def calc_multi_max
+    for i in 0..3 do
+      args = @calc_args[i]
+      for x in args[:x0]..args[:x1] do
+        for y in args[:y0]..args[:y1] do
+          four_by = @number_array[x][y] *
+          @number_array[x+args[:off][0][0]][y+args[:off][0][1]] *
+          @number_array[x+args[:off][1][0]][y+args[:off][1][1]] *
+          @number_array[x+args[:off][2][0]][y+args[:off][2][1]]
+          @multi_max = four_by if four_by > @multi_max
+        end
       end
     end
   end
-
 end
 
 

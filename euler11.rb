@@ -1,5 +1,6 @@
 require_relative 'grid'
 require_relative 'euler_requires'
+require 'benchmark'
 
 # Largest Product in a Grid
 # What is the greatest product of four adjacent numbers
@@ -9,6 +10,12 @@ require_relative 'euler_requires'
 grid = Grid.new
 grid.create
 grid.define_limits
-grid.calc_multi_max
+
+n = 1
+Benchmark.bm do |x|
+  x.report {
+    grid.calc_multi_max
+  }
+end
 
 p grid.multi_max
