@@ -26,6 +26,10 @@
 
 <tr><td>11</td><td>Largest product in a grid</td><td>Ruby</td><td>euler11.rb, grid.rb</td></tr>
 
+<tr><td>12</td><td>Highly divisible triangular number</td><td>Ruby</td><td>euler12.rb</td></tr>
+
+<tr><td>13</td><td>Large Sum</td><td>Ruby</td><td>euler13.rb, euler13.txt</td></tr>
+
 </tr>
 </table>
 
