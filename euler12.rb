@@ -33,15 +33,18 @@ end
 
 def find_num_factors_of_tri_sum(divisors_requested)
   num_divisors = 0
-  number = 2
+  #prev_number = 1
+  next_number = 2
   while num_divisors <= divisors_requested
-    triangle_sum = (1..number).inject(:+)
-    num_divisors = num_factors(number)
+    triangle_sum = (1..next_number).inject(:+)
+    #triangle_sum = prev_number + next_number
+    num_divisors = num_factors(triangle_sum)
     if num_divisors >= divisors_requested
-      puts "Number: #{number}, Number of divisors: #{num_divisors}"
+      puts "Triangle Sum: #{triangle_sum}, Number of divisors: #{num_divisors}"
       return
     end
-    number += 1
+    #prev_number = triangle_sum
+    next_number += 1
   end
 end
 
