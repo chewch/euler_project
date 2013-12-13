@@ -30,6 +30,8 @@
 
 <tr><td>13</td><td>Large Sum</td><td>Ruby</td><td>euler13.rb, euler13.txt</td></tr>
 
+<tr><td>14</td><td>Longest Collatz sequence</td><td>Ruby</td><td>euler14.rb</td></tr>
+
 </tr>
 </table>
 
